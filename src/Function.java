@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Random;
 
 public class Function {
@@ -27,20 +29,27 @@ public class Function {
         return a*x+b;
     }
 
-    public int check_point(int x, int y){
-        if (f(x) > y){
+    public int check_point(@NotNull Point point){
+        if (f(point.x) > point.y){
             return -1;
-        } else if (f(x) < y) {
+        } else if (f(point.x) < point.y) {
             return 1;
         } else {
             return 0;
         }
     }
 
-    public Point generate_higher(){
+    public Point generate_point(boolean higher){
         Random random = new Random();
         int X = random.nextInt(domain[1]) + domain[0];
-        // tutaj coś kontynuowac miałem
+        int Y;
+        if (higher) {
+            Y = f(X) + random.nextInt(domain[1]);
+            return new Point(X, Y, 1);
+        } else {
+            Y = f(X) - random.nextInt(domain[1]);
+            return new Point(X, Y, -1);
+        }
     }
 
 }
