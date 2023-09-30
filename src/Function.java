@@ -1,4 +1,3 @@
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -29,14 +28,8 @@ public class Function {
         return a*x+b;
     }
 
-    public int check_point(@NotNull Point point){
-        if (f(point.x) > point.y){
-            return -1;
-        } else if (f(point.x) < point.y) {
-            return 1;
-        } else {
-            return 0;
-        }
+    public int check_point(Point point){
+        return Integer.compare(point.y, f(point.x));
     }
 
     public Point generate_point(boolean higher){
